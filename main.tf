@@ -20,8 +20,8 @@ module "vpc_peering" {
   tags                                      = "${var.tags}"
   auto_accept                               = "${var.auto_accept}"
   requestor_allow_remote_vpc_dns_resolution  = "true"
-  requestor_vpc_region                       = "${var.requestor_vpc_region}"
   requestor_vpc_id                           = "${module.kops_metadata.vpc_id}"
   acceptor_vpc_id                          = "${var.backing_services_vpc_id}"
   acceptor_allow_remote_vpc_dns_resolution = "${var.backing_services_allow_remote_vpc_dns_resolution}"
+  acceptor_vpc_region                       = "${var.requestor_vpc_region}"
 }
