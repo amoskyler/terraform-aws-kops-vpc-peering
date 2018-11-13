@@ -8,6 +8,11 @@ variable "auto_accept" {
   description = "Automatically accept the peering (both VPCs need to be in the same AWS account)"
 }
 
+variable "acceptor_vpc_region" {
+  type = "string"
+  description = "Specify peered DB region. auto_accept must be false"
+}
+
 variable "dns_zone" {
   type        = "string"
   description = "Name of the Kops DNS zone"

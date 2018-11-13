@@ -10,7 +10,7 @@ module "kops_metadata" {
 
 # Create a peering connection between the backing services VPC and Kops VPC
 module "vpc_peering" {
-  source                                    = "git::https://github.com/cloudposse/terraform-aws-vpc-peering.git?ref=tags/0.1.1"
+  source                                    = "git::https://github.com/amos/terraform-aws-vpc-peering.git?ref=tags/0.1.1"
   enabled                                   = "${var.enabled}"
   namespace                                 = "${var.namespace}"
   name                                      = "${var.name}"
@@ -19,8 +19,9 @@ module "vpc_peering" {
   attributes                                = "${var.attributes}"
   tags                                      = "${var.tags}"
   auto_accept                               = "${var.auto_accept}"
-  requestor_vpc_id                          = "${var.backing_services_vpc_id}"
-  acceptor_vpc_id                           = "${module.kops_metadata.vpc_id}"
-  requestor_allow_remote_vpc_dns_resolution = "${var.backing_services_allow_remote_vpc_dns_resolution}"
-  acceptor_allow_remote_vpc_dns_resolution  = "true"
+  requestor_allow_remote_vpc_dns_resolution  = "true"
+  requestor_vpc_region                       = "${var.requestor_vpc_region}"
+  requestor_vpc_id                           = "${module.kops_metadata.vpc_id}"
+  acceptor_vpc_id                          = "${var.backing_services_vpc_id}"
+  acceptor_allow_remote_vpc_dns_resolution = "${var.backing_services_allow_remote_vpc_dns_resolution}"
 }
